@@ -88,7 +88,7 @@ const Customers = () => {
               alt={i.name}
               onError={(e) => {
                 // Handle image load error
-                e.currentTarget.src = { defaultImage }; // Use a default avatar image
+                e.currentTarget.src = { defaultImage: string }; // Use a default avatar image
               }}
             />
           ),
