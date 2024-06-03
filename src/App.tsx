@@ -41,7 +41,6 @@ const ProductManagement = lazy(
 const TransactionManagement = lazy(
   () => import("./pages/admin/management/transactionmanagement")
 );
-
 const App = () => {
   const { user, loading } = useSelector(
     (state: RootState) => state.userReducer
@@ -56,9 +55,11 @@ const App = () => {
         dispatch(userExist(data.user));
       } else dispatch(userNotExist());
     });
-  }, [dispatch]);
+  }, []);
 
-  return (
+  return loading ? (
+    <Loader />
+  ) : (
     <>
       <Router>
         <Header user={user} />
