@@ -23,9 +23,6 @@ interface DataType {
   action: ReactElement;
 }
 
-const defaultImage =
-  "https://w7.pngwing.com/pngs/205/731/png-transparent-default-avatar-thumbnail.png";
-
 const columns: Column<DataType>[] = [
   {
     Header: "Avatar",
@@ -87,8 +84,8 @@ const Customers = () => {
               src={i.photo}
               alt={i.name}
               onError={(e) => {
-                // Handle image load error
-                e.currentTarget.src = { defaultImage: string }; // Use a default avatar image
+                // Handle image load error by using a default avatar image
+                e.currentTarget.src = defaultImage;
               }}
             />
           ),

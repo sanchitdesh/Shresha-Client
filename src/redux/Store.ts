@@ -1,4 +1,4 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import { productAPI } from "./api/productAPI";
 import { userAPI } from "./api/userAPI";
 import { userReducer } from "./reducer/userReducer";
@@ -18,7 +18,9 @@ export const store = configureStore({
     [cartReducer.name]: cartReducer.reducer
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat([
+    getDefaultMiddleware({
+      serializableCheck: false // to avoid the serializable check
+    }).concat([
       userAPI.middleware,
       productAPI.middleware,
       orderApi.middleware,
