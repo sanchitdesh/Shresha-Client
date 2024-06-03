@@ -15,32 +15,31 @@ import { responseToast } from "../../../utils/features";
 const Productmanagement = () => {
   const { user } = useSelector((state: RootState) => state.userReducer);
 
-  const params = useParams();
+  const params = useParams<{ id: string }>(); // Ensure params.id is not undefined
   const navigate = useNavigate();
 
-  const { data, isLoading, isError } = useProductDetailsQuery(params.id!);
+  const { data, isLoading, isError } = useProductDetailsQuery(params.id);
 
-  const { price, photo, name, stock, size, category, color, description } =
-    data?.product || {
-      photo: "",
-      category: "",
-      name: "",
-      stock: 0,
-      price: 0,
-      color: "",
-      size: "",
-      description: ""
-    };
+  const {
+    price = 0,
+    photo = "",
+    name = "",
+    stock = 0,
+    size = "",
+    category = "",
+    color = "",
+    description = ""
+  } = data?.product || {};
 
-  const [priceUpdate, setPriceUpdate] = useState<number>(price || 0);
-  const [stockUpdate, setStockUpdate] = useState<number>(stock || 0);
-  const [nameUpdate, setNameUpdate] = useState<string>(name || "");
-  const [colorUpdate, setColorUpdate] = useState<string>(color || "");
-  const [sizeUpdate, setSizeUpdate] = useState<string>(size || "");
-  const [descriptionUpdate, setDescriptionUpdate] = useState<string>(
-    description || ""
-  );
-  const [categoryUpdate, setCategoryUpdate] = useState<string>(category || "");
+  // Ensure non-nullable values
+  const [priceUpdate, setPriceUpdate] = useState<number>(price);
+  const [stockUpdate, setStockUpdate] = useState<number>(stock);
+  const [nameUpdate, setNameUpdate] = useState<string>(name);
+  const [colorUpdate, setColorUpdate] = useState<string>(color);
+  const [sizeUpdate, setSizeUpdate] = useState<string>(size);
+  const [descriptionUpdate, setDescriptionUpdate] =
+    useState<string>(description);
+  const [categoryUpdate, setCategoryUpdate] = useState<string>(category);
   const [photoUpdate, setPhotoUpdate] = useState<string>("");
   const [photoFile, setPhotoFile] = useState<File | undefined>(undefined);
 
@@ -82,7 +81,7 @@ const Productmanagement = () => {
     const res = await updateProduct({
       formData,
       userId: user?._id,
-      productId: data?.product._id
+      productId: data?.product?._id // Ensure data.product is not undefined
     });
 
     responseToast(res, navigate, "/admin/product");
@@ -91,21 +90,21 @@ const Productmanagement = () => {
   const deleteHandler = async () => {
     const res = await deleteProduct({
       userId: user?._id,
-      productId: data?.product._id
+      productId: data?.product?._id // Ensure data.product is not undefined
     });
 
     responseToast(res, navigate, "/admin/product");
   };
 
   useEffect(() => {
-    if (data) {
-      setNameUpdate(data.product.name || "");
-      setSizeUpdate(data.product.size || "");
-      setColorUpdate(data.product.color || "");
-      setDescriptionUpdate(data.product.description || "");
-      setPriceUpdate(data.product.price || 0);
-      setStockUpdate(data.product.stock || 0);
-      setCategoryUpdate(data.product.category || "");
+    if (data?.product) {
+      setNameUpdate(data.product.name);
+      setSizeUpdate(data.product.size);
+      setColorUpdate(data.product.color);
+      setDescriptionUpdate(data.product.description);
+      setPriceUpdate(data.product.price);
+      setStockUpdate(data.product.stock);
+      setCategoryUpdate(data.product.category);
     }
   }, [data]);
 
@@ -120,7 +119,7 @@ const Productmanagement = () => {
         ) : (
           <>
             <section>
-              <strong>ID - {data?.product._id}</strong>
+              <strong>ID - {data?.product?._id}</strong>
               <img
                 src={`${import.meta.env.VITE_SERVER}/${photo}`}
                 alt="Product"

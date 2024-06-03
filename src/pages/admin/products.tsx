@@ -60,7 +60,10 @@ const columns: Column<DataType>[] = [
 const Products = () => {
   const { user } = useSelector((state: RootState) => state.userReducer);
 
-  const { isLoading, isError, error, data } = useAllProductsQuery(user?._id);
+  // Checking if user._id exists before calling useAllProductsQuery
+  const { isLoading, isError, error, data } = useAllProductsQuery(
+    user?._id || ""
+  );
 
   const [rows, setRows] = useState<DataType[]>([]);
 

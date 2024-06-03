@@ -13,9 +13,9 @@ const NewProduct = () => {
   const [description, setDescription] = useState<string>("");
   const [color, setColor] = useState<string>("");
   const [category, setCategory] = useState<string>("");
-  const [price, setPrice] = useState<number>(1000);
-  const [stock, setStock] = useState<number>(1);
-  const [size, setSize] = useState<number>(1);
+  const [price, setPrice] = useState<string>("1000"); // Convert to string
+  const [stock, setStock] = useState<string>("1"); // Convert to string
+  const [size, setSize] = useState<string>("1"); // Convert to string
   const [photoPrev, setPhotoPrev] = useState<string>("");
   const [photo, setPhoto] = useState<File>();
 
@@ -58,10 +58,10 @@ const NewProduct = () => {
     formData.set("name", name);
     formData.set("description", description);
     formData.set("color", color);
-    formData.set("price", price.toString());
-    formData.set("stock", stock.toString());
+    formData.set("price", price); // Already a string
+    formData.set("stock", stock); // Already a string
     formData.set("photo", photo);
-    formData.set("size", size);
+    formData.set("size", size); // Already a string
     formData.set("category", category);
 
     const res = await newProduct({ id: user?._id, formData });
@@ -140,7 +140,7 @@ const NewProduct = () => {
                 type="number"
                 placeholder="Stock"
                 value={stock}
-                onChange={(e) => setStock(Number(e.target.value))}
+                onChange={(e) => setStock(e.target.value)}
               />
             </div>
 
