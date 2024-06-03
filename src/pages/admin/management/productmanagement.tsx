@@ -18,7 +18,7 @@ const Productmanagement = () => {
   const params = useParams<{ id: string }>(); // Ensure params.id is not undefined
   const navigate = useNavigate();
 
-  const { data, isLoading, isError } = useProductDetailsQuery(params.id);
+  const { data, isLoading, isError } = useProductDetailsQuery(params.id || "");
 
   const {
     price = 0,
