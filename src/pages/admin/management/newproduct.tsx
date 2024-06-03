@@ -47,7 +47,8 @@ const NewProduct = () => {
       !color ||
       !price ||
       !size ||
-      stock < 0 ||
+      isNaN(parseInt(stock)) || // Ensure stock is a valid number
+      parseInt(stock) < 0 || // Ensure stock is not negative
       !category ||
       !photo
     )
@@ -64,7 +65,7 @@ const NewProduct = () => {
     formData.set("size", size); // Already a string
     formData.set("category", category);
 
-    const res = await newProduct({ id: user?._id, formData });
+    const res = await newProduct({ id: user?._id!, formData });
 
     responseToast(res, navigate, "/admin/product");
   };

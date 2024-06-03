@@ -9,7 +9,7 @@ import { RootState } from "../../../redux/Store";
 const PieCharts = () => {
   const { user } = useSelector((state: RootState) => state.userReducer);
 
-  const { isLoading, data, isError } = usePieQuery(user?._id);
+  const { isLoading, data, isError } = usePieQuery(user?._id!);
 
   const order = data?.charts.orderFulfillment!;
   const categories = data?.charts.productCategories!;
