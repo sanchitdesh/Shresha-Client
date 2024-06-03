@@ -32,16 +32,17 @@ const Productmanagement = () => {
   } = data?.product || {};
 
   // Ensure non-nullable values
-  const [priceUpdate, setPriceUpdate] = useState<number>(price);
-  const [stockUpdate, setStockUpdate] = useState<number>(stock);
-  const [nameUpdate, setNameUpdate] = useState<string>(name);
-  const [colorUpdate, setColorUpdate] = useState<string>(color);
-  const [sizeUpdate, setSizeUpdate] = useState<string>(size);
-  const [descriptionUpdate, setDescriptionUpdate] =
-    useState<string>(description);
-  const [categoryUpdate, setCategoryUpdate] = useState<string>(category);
-  const [photoUpdate, setPhotoUpdate] = useState<string>("");
-  const [photoFile, setPhotoFile] = useState<File | undefined>(undefined);
+  const [priceUpdate, setPriceUpdate] = useState<number>(price || 0);
+  const [stockUpdate, setStockUpdate] = useState<number>(stock || 0);
+  const [nameUpdate, setNameUpdate] = useState<string>(name || "");
+  const [colorUpdate, setColorUpdate] = useState<string>(color || "");
+  const [sizeUpdate, setSizeUpdate] = useState<string>(size || "");
+  const [descriptionUpdate, setDescriptionUpdate] = useState<string>(
+    description || ""
+  );
+  const [categoryUpdate, setCategoryUpdate] = useState<string>(category || "");
+  const [photoUpdate, setPhotoUpdate] = useState<string>(photo || "");
+  const [photoFile, setPhotoFile] = useState<File>();
 
   const [updateProduct] = useUpdateProductMutation();
   const [deleteProduct] = useDeleteProductMutation();
@@ -81,7 +82,7 @@ const Productmanagement = () => {
     const res = await updateProduct({
       formData,
       userId: user?._id,
-      productId: data?.product?._id // Ensure data.product is not undefined
+      productId: data?.product?._id || ""
     });
 
     responseToast(res, navigate, "/admin/product");
@@ -90,7 +91,7 @@ const Productmanagement = () => {
   const deleteHandler = async () => {
     const res = await deleteProduct({
       userId: user?._id,
-      productId: data?.product?._id // Ensure data.product is not undefined
+      productId: data?.product?._id || ""
     });
 
     responseToast(res, navigate, "/admin/product");
@@ -98,13 +99,14 @@ const Productmanagement = () => {
 
   useEffect(() => {
     if (data?.product) {
-      setNameUpdate(data.product.name);
-      setSizeUpdate(data.product.size);
-      setColorUpdate(data.product.color);
-      setDescriptionUpdate(data.product.description);
-      setPriceUpdate(data.product.price);
-      setStockUpdate(data.product.stock);
-      setCategoryUpdate(data.product.category);
+      setNameUpdate(data.product.name || "");
+      setSizeUpdate(data.product.size || "");
+      setColorUpdate(data.product.color || "");
+      setDescriptionUpdate(data.product.description || "");
+      setPriceUpdate(data.product.price || 0);
+      setStockUpdate(data.product.stock || 0);
+      setCategoryUpdate(data.product.category || "");
+      setPhotoUpdate(data.product.photo || "");
     }
   }, [data]);
 

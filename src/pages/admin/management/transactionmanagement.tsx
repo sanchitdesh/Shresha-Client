@@ -150,7 +150,7 @@ const ProductCard = ({
   price,
   quantity,
   productId
-}: OrderItem) => (
+}: Omit<OrderItem, "stock">) => (
   <div className="transaction-product-card">
     <img src={photo} alt={name} />
     <Link to={`/product/${productId}`}>{name}</Link>
