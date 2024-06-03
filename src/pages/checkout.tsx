@@ -53,7 +53,7 @@ const CheckOutForm = () => {
       discount,
       shippingCharges,
       total,
-      user: user?._id
+      user: user?._id!
     };
 
     const { paymentIntent, error } = await stripe.confirmPayment({
@@ -92,11 +92,6 @@ const Checkout = () => {
   const clientSecret: string | undefined = location.state;
 
   if (!clientSecret) return <Navigate to={"/shipping"} />;
-
-  // Handle the case where clientSecret is undefined
-  if (typeof clientSecret === "undefined") {
-    return <Navigate to={"/shipping"} />;
-  }
 
   return (
     <Elements

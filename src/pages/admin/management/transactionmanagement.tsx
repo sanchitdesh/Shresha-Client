@@ -92,10 +92,10 @@ const TransactionManagement = () => {
                   key={i._id}
                   name={i.name}
                   photo={`${server}/${i.photo}`}
-                  price={i.price}
-                  quantity={i.quantity}
                   productId={i.productId}
                   _id={i._id}
+                  quantity={i.quantity}
+                  price={i.price}
                 />
               ))}
             </section>
@@ -149,8 +149,7 @@ const ProductCard = ({
   photo,
   price,
   quantity,
-  productId,
-  _id
+  productId
 }: OrderItem) => (
   <div className="transaction-product-card">
     <img src={photo} alt={name} />
