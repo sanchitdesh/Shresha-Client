@@ -10,7 +10,7 @@ import ProtectedRoute from "./components/protectedRoute";
 import { auth } from "./firebase";
 import { getUser } from "./redux/api/userAPI";
 import { userExist, userNotExist } from "./redux/reducer/userReducer";
-import { RootState } from "./redux/store";
+import { RootState } from "./redux/Store";
 
 const Home = lazy(() => import("./pages/Home"));
 const ContactForm = lazy(() => import("./pages/ContactUsForm"));
