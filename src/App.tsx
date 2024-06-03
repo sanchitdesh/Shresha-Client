@@ -54,12 +54,16 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        const data = await getUser(user.uid);
-        dispatch(userExist(data.user));
-      } else dispatch(userNotExist());
-    });
+    const fetchUser = async () => {
+      onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          const data = await getUser(user.uid);
+          dispatch(userExist(data.user));
+        } else dispatch(userNotExist());
+      });
+    };
+
+    fetchUser();
   }, [dispatch]);
 
   return loading ? (

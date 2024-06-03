@@ -31,7 +31,7 @@ const Dashboard = () => {
       <main className="dashboard">
         {isLoading ? (
           <Skeleton length={20} />
-        ) : (
+        ) : stats ? (
           <>
             <div className="bar">
               <BsSearch />
@@ -121,6 +121,8 @@ const Dashboard = () => {
               <Table data={stats.latestTransaction} />
             </section>
           </>
+        ) : (
+          <p>No data available</p>
         )}
       </main>
     </div>

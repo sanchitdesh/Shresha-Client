@@ -1,6 +1,4 @@
-// ContactForm.jsx
-
-import { useState } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -12,7 +10,9 @@ const ContactForm = () => {
 
   const [responseMessage, setResponseMessage] = useState("");
 
-  const handleChange = (e) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -20,7 +20,7 @@ const ContactForm = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {

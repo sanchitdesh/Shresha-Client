@@ -93,6 +93,11 @@ const Checkout = () => {
 
   if (!clientSecret) return <Navigate to={"/shipping"} />;
 
+  // Handle the case where clientSecret is undefined
+  if (typeof clientSecret === "undefined") {
+    return <Navigate to={"/shipping"} />;
+  }
+
   return (
     <Elements
       options={{

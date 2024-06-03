@@ -21,7 +21,8 @@ function Footer() {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link>About</Link>
+              <Link to="/about">About</Link>{" "}
+              {/* Add the 'to' prop with a valid path */}
             </li>
             <li>
               <Link to="/search">Categories</Link>

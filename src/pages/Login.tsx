@@ -1,7 +1,6 @@
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useState } from "react";
 import toast from "react-hot-toast";
-
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { FcGoogle } from "react-icons/fc";
 import { auth } from "../firebase";
@@ -40,14 +39,18 @@ const Login = () => {
       });
 
       if ("data" in res) {
-        toast.success(res.data.message);
+        if (res.data) {
+          toast.success(res.data.message);
+        } else {
+          toast.error("Unexpected error: No data in response");
+        }
       } else {
         const error = res.error as FetchBaseQueryError;
         const message = (error.data as MessageResponse).message;
         toast.error(message);
       }
     } catch (error) {
-      toast.error("Sign In Fail");
+      toast.error("Sign In Failed");
     }
   };
 

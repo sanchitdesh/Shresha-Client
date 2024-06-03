@@ -6,7 +6,7 @@ import { Column } from "react-table";
 import TableHOC from "../components/admin/TableHOC";
 import { Skeleton } from "../components/Loader";
 import { useMyOrdersQuery } from "../redux/api/orderAPI";
-import { RootState } from "../redux/store";
+import { RootState } from "../redux/Store";
 import { CustomError } from "../types/api-types";
 
 type DataType = {

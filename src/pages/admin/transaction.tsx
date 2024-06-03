@@ -47,9 +47,7 @@ const columns: Column<DataType>[] = [
 ];
 
 const Transaction = () => {
-  const { user } = useSelector(
-    (state: { userReducer: RootState }) => state.userReducer
-  );
+  const { user } = useSelector((state: RootState) => state.userReducer);
 
   const { isLoading, data, isError, error } = useAllOrdersQuery(user?._id);
 
@@ -61,10 +59,10 @@ const Transaction = () => {
   }
 
   useEffect(() => {
-    if (data)
+    if (data) {
       setRows(
         data.orders.map((i) => ({
-          user: i.user?.name,
+          user: i.user?.name || "", // Adjust this line to handle the case when i.user is undefined
           amount: i.total,
           discount: i.discount,
           quantity: i.orderItems.length,
@@ -84,6 +82,7 @@ const Transaction = () => {
           action: <Link to={`/admin/transaction/${i._id}`}>Manage</Link>
         }))
       );
+    }
   }, [data]);
 
   const Table = TableHOC<DataType>(
