@@ -11,9 +11,9 @@ const PieCharts = () => {
 
   const { isLoading, data, isError } = usePieQuery(user?._id);
 
-  const order = data?.charts.orderFullfillment!;
+  const order = data?.charts.orderFulfillment!;
   const categories = data?.charts.productCategories!;
-  const stock = data?.charts.stockAvailablity!;
+  const stock = data?.charts.stockAvailability!;
   const revenue = data?.charts.revenueDistribution!;
   const ageGroup = data?.charts.usersAgeGroup!;
   const adminCustomer = data?.charts.adminCustomer!;
