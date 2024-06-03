@@ -83,10 +83,6 @@ const Customers = () => {
               }}
               src={i.photo}
               alt={i.name}
-              onError={(e) => {
-                // Handle image load error by using a default avatar image
-                e.currentTarget.src = defaultImage;
-              }}
             />
           ),
           name: i.name,
