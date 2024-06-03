@@ -11,7 +11,7 @@ import {
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { auth } from "../firebase";
-import { RootState } from "../redux/store";
+import { RootState } from "../redux/Store";
 import { User } from "../types/types";
 
 // const user = {

@@ -64,8 +64,8 @@ const TransactionManagement = () => {
 
   const deleteHandler = async () => {
     const res = await deleteOrder({
-      userId: user?._id,
-      orderId: data?.order._id
+      userId: user?._id!,
+      orderId: data?.order._id!
     });
     responseToast(res, navigate, "/admin/transaction");
   };

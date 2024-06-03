@@ -7,7 +7,7 @@ import AdminSidebar from "../../components/admin/AdminSidebar";
 import TableHOC from "../../components/admin/TableHOC";
 import { Skeleton } from "../../components/Loader";
 import { useAllOrdersQuery } from "../../redux/api/orderAPI";
-import { RootState } from "../../redux/store";
+import { RootState } from "../../redux/Store";
 import { CustomError } from "../../types/api-types";
 
 interface DataType {

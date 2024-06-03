@@ -10,7 +10,7 @@ import {
   useAllUsersQuery,
   useDeleteUserMutation
 } from "../../redux/api/userAPI";
-import { RootState } from "../../redux/store";
+import { RootState } from "../../redux/Store";
 import { CustomError } from "../../types/api-types";
 import { responseToast } from "../../utils/features";
 

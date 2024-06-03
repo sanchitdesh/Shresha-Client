@@ -9,7 +9,7 @@ import {
   useProductDetailsQuery,
   useUpdateProductMutation
 } from "../../../redux/api/productAPI";
-import { RootState } from "../../../redux/store";
+import { RootState } from "../../../redux/Store";
 import { responseToast } from "../../../utils/features";
 
 const Productmanagement = () => {

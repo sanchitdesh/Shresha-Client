@@ -2,11 +2,13 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import {
   AllProductsResponse,
   CategoriesResponse,
+  DeleteProductRequest,
   MessageResponse,
   NewProductRequest,
   ProductResponse,
   SearchProductsRequest,
-  SearchProductsResponse
+  SearchProductsResponse,
+  UpdateProductRequest
 } from "../../types/api-types";
 
 export const productAPI = createApi({

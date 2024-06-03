@@ -39,7 +39,7 @@ const Search = () => {
   const [category, setCategory] = useState("");
   const [page, setPage] = useState(1);
   const [color, setColor] = useState("");
-  const [size, setSize] = useState("");
+  const [size] = useState("");
 
   const {
     isLoading: productLoading,

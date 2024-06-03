@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import AdminSidebar from "../../../components/admin/AdminSidebar";
 import { useNewProductMutation } from "../../../redux/api/productAPI";
-import { RootState } from "../../../redux/store";
+import { RootState } from "../../../redux/Store";
 import { responseToast } from "../../../utils/features";
 
 const NewProduct = () => {
