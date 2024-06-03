@@ -3,7 +3,6 @@ import { lazy, Suspense, useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Loader from "./components/Loader";
 import ProtectedRoute from "./components/protectedRoute";
@@ -11,6 +10,7 @@ import { auth } from "./firebase";
 import { getUser } from "./redux/api/userAPI";
 import { userExist, userNotExist } from "./redux/reducer/userReducer";
 import { RootState } from "./redux/Store";
+import Footer from "./components/Footer";
 
 const Home = lazy(() => import("./pages/Home"));
 const ContactForm = lazy(() => import("./pages/ContactUsForm"));
@@ -44,31 +44,21 @@ const TransactionManagement = lazy(
 
 const App = () => {
   const { user, loading } = useSelector(
-    (state: { userReducer: RootState }) => state.userReducer
+    (state: RootState) => state.userReducer
   );
-
-  // return signOut(auth).then((c) => console.log("done"));
-
-  //Note: You can put localhost url and logout from firebase then it will work the same
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchUser = async () => {
-      onAuthStateChanged(auth, async (user) => {
-        if (user) {
-          const data = await getUser(user.uid);
-          dispatch(userExist(data.user));
-        } else dispatch(userNotExist());
-      });
-    };
-
-    fetchUser();
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const data = await getUser(user.uid);
+        dispatch(userExist(data.user));
+      } else dispatch(userNotExist());
+    });
   }, [dispatch]);
 
-  return loading ? (
-    <Loader />
-  ) : (
+  return (
     <>
       <Router>
         <Header user={user} />
@@ -95,8 +85,6 @@ const App = () => {
               <Route path="/orders" element={<Orders />} />
               <Route path="/order/:id" element={<OrderDetails />} />
               <Route path="/pay" element={<Checkout />} />
-
-              {/* <Route path="/pay" element={<Checkout />} /> */}
             </Route>
             {/* Admin Routes */}
             <Route
