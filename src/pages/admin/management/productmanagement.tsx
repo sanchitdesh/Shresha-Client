@@ -81,7 +81,7 @@ const Productmanagement = () => {
 
     const res = await updateProduct({
       formData,
-      userId: user?._id,
+      userId: user?._id!,
       productId: data?.product?._id || ""
     });
 
@@ -90,7 +90,7 @@ const Productmanagement = () => {
 
   const deleteHandler = async () => {
     const res = await deleteProduct({
-      userId: user?._id,
+      userId: user?._id!,
       productId: data?.product?._id || ""
     });
 
