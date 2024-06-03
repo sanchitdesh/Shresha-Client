@@ -38,7 +38,9 @@ export type CartItem = {
   stock: number;
   size: string;
 };
-export type OrderItem = Omit<CartItem, "stock"> & { _id: string };
+export type OrderItem = Omit<CartItem, "stock", "color", "size"> & {
+  _id: string;
+};
 
 export type Order = {
   orderItems: OrderItem[];
