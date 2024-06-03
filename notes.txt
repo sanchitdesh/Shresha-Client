@@ -1,0 +1,23 @@
+Commands:
+npm i react-router-dom 
+npm i react-icons
+npm i react-hot-toast
+npm i sass
+npm i firebase
+npm i react-table
+npm i --save-dev @types/react-table
+npm install @reduxjs/toolkit 
+npm i axios
+npm i react-redux
+npm install --save @stripe/react-stripe-js @stripe/stripe-js
+
+Project run command:
+npm run dev
+
+Extensions:
+Atom one Dark Theme
+ES7+React/Redux/React-Native
+
+
+//Install:
+ npm install --save chart.js react-chartjs-2
