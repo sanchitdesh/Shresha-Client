@@ -8,8 +8,8 @@ import AdminSidebar from "../../components/admin/AdminSidebar";
 import TableHOC from "../../components/admin/TableHOC";
 import { Skeleton } from "../../components/Loader";
 import { useAllProductsQuery } from "../../redux/api/productAPI";
-import { CustomError } from "../../types/api-types";
 import { RootState } from "../../redux/Store";
+import { CustomError } from "../../types/api-types";
 
 interface DataType {
   photo: ReactElement;
