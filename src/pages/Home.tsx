@@ -6,6 +6,7 @@ import ProductCard from "../components/ProductCard";
 import { useLatestProductsQuery } from "../redux/api/productAPI";
 import { addToCart } from "../redux/reducer/cartReducer";
 import { CartItem } from "../types/types";
+import Footer from "../components/Footer";
 
 const Home = () => {
   const { data, isLoading, isError } = useLatestProductsQuery("");
@@ -49,6 +50,7 @@ const Home = () => {
           ))
         )}
       </main>
+      <Footer />
     </div>
   );
 };

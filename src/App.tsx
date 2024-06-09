@@ -10,7 +10,6 @@ import { auth } from "./firebase";
 import { getUser } from "./redux/api/userAPI";
 import { userExist, userNotExist } from "./redux/reducer/userReducer";
 import { RootState } from "./redux/Store";
-import Footer from "./components/Footer";
 
 const Home = lazy(() => import("./pages/Home"));
 const ContactForm = lazy(() => import("./pages/ContactUsForm"));
@@ -129,7 +128,6 @@ const App = () => {
           </Routes>
         </Suspense>
         <Toaster position="bottom-center" />
-        <Footer />
       </Router>
     </>
   );
